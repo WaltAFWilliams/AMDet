@@ -9,9 +9,9 @@ AMDet has 2 scripts in order to run detections. The first is `predict_on_one_ima
 
 ### Evaluating On One Image
 Run this command replacing _path to folder_ with the path to the folder where the images are located and _path to saved model_ with the path to the model.pt file:
-```Shell 
+`Shell 
 python predict_images.py -f <path to folder> -m <path to saved model>
-```
+`
 The arguments for the `predict_image.py` script are:
 
 
