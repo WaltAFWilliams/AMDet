@@ -7,11 +7,27 @@ Welcome to the GitHub Repo for AMDet. This tool came as a result of a collaborat
 ### How to Use
 AMDet has 2 scripts in order to run detections. The first is `predict_on_one_image.py` which accepts a single image as an argument and will save the image (with all detections drawn) into a folder of your choosing. The second script, `predict_images.py` is virtually identical except you will pass in a folder with all the images you with to predict on inside of it. It will also save all predictions to a specified folder.
 
-### Evaluating On One Image
+### Evaluating On Multiple Images
 Run this command replacing _path to folder_ with the path to the folder where the images are located and _path to saved model_ with the path to the model.pt file:
-`Shell 
+```Shell 
 python predict_images.py -f <path to folder> -m <path to saved model>
-`
-The arguments for the `predict_image.py` script are:
+```
+The arguments for the `predict_images.py` script are:
+```Shell
+-f, --folder: path to folder where the images are located
+-m, --model: path to saved torch model (.pt) format
+-s, -patch_size: patch size to cut the image into before passing into network (OPTIONAL)
+-d, --destination: path to folder where output will be stored (OPTIONAL)
+```
+*Note* We recommend *NOT* changing the default patch size.
+
+### Evaluating On One Image
+The process for evaluating on a single image is identical except that the folder argument is replaced with a single image argument. For evaluating on a single image use this command:
+```Shell
+python predict_on_one_image.py -i <path to image> -m <path to saved model>
+```
+
+Special thanks to Jimmy Hall and the AutoML lab with their help in creating this model. It wouldn't have been possible without the support and guidance.
+
 
 
