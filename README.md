@@ -19,7 +19,7 @@ The arguments for the `predict_images.py` script are:
 -s, -patch_size: patch size to cut the image into before passing into network (OPTIONAL)
 -d, --destination: path to folder where output will be stored (OPTIONAL)
 ```
-*Note* We recommend *NOT* changing the default patch size.
+***NOTE*** We recommend ***NOT*** changing the default patch size.
 
 ### Evaluating On One Image
 The process for evaluating on a single image is identical except that the folder argument is replaced with a single image argument. For evaluating on a single image use this command:
