@@ -19,12 +19,19 @@ The arguments for the `predict_images.py` script are:
 -s, -patch_size: patch size to cut the image into before passing into network (OPTIONAL)
 -d, --destination: path to folder where output will be stored (OPTIONAL)
 ```
-***NOTE*** We do ***NOT*** recommend changing the patch size.
+***NOTE***: We do ***NOT*** recommend changing the patch size.
 
 ### Evaluating On One Image
 The process for evaluating on a single image is identical except that the folder argument is replaced with a single image argument. For evaluating on a single image use this command:
 ```Shell
 python predict_on_one_image.py -i <path to image> -m <path to saved model>
+```
+Again the arguments for this script are:
+```Shell
+-i, --image: path to image
+-m, --model: path to saved torch model (.pt) format
+-s, -patch_size: patch size to cut the image into before passing into network (OPTIONAL)
+-d, --destination: path to folder where output will be stored (OPTIONAL)
 ```
 
 ### Acknowledgement
