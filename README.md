@@ -2,7 +2,6 @@
 By Walt Williams and Jimmy Hall at Microsoft Research
 
 ### Introduction
-<<<<<<< HEAD
 Welcome to the GitHub Repo for AMDet. This tool came as a result of a need to help pathologists with labeling mitotic vs non-mitotic cells. There were pathologists who were tasked with labeling a novel dataset for histopathology analysis but they reported the process being incredibly slow and cumbersome. In order to aid them with their diagnoses a tool for automatic localization and classification of mitotic and non-mitotic cells was needed. AMDet was created for this purpose. It uses 2 scripts in order to run its detections. The first is `predict_on_one_image.py` which runs predictions on a single image then saves the image (with all detections drawn) into a folder of your choosing. The second script, `predict_images.py` is virtually identical except that it runs detections on multiple images and you have to specify a folder containing all the images you wish to pass through the network. It also saves all predictions to a specified folder. For more information about AMDet and its detection pipeline please refer to the original paper describing the details of the network [here](https://www.google.com).
 
 ### How To Use
