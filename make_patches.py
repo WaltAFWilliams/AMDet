@@ -42,7 +42,6 @@ def make_patches(img: torch.Tensor, label: torch.Tensor, win_size: Union[tuple,l
     h, w = img.size()[1], img.size()[2]
     name = img_names[label['image_id']][:-5] # last 5 characters are .tiff
     # Start cropping
-    assert len(win_size) == 2, 'Window length must be 2'
     winX, winY = win_size[0], win_size[1] # Window height and width
     topX, topY = 0, 0 # Starting from top left corner
     
