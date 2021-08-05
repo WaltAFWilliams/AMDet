@@ -6,8 +6,6 @@ Welcome to the GitHub Repo for AMDet. This tool came as a result of a need to he
 
 ### How To Use
 AMDet is designed to run on histopathology slides with dimensions roughly equal to those found in the [ICPR 2014 dataset](https://mitos-atypia-14.grand-challenge.org/Dataset/). The first step in using AMDet is to download the model's weights using [this link](http://aka.ms/automl-research-resources/data/models-vision-pretrained/amdet.pt). Make sure to remember the location of this file as it's needed when you run the commands for getting the model's predictions.
-### How To Use
-AMDet is designed to run on histopathology slides roughly the size of the images in the [ICPR 2014 dataset](https://mitos-atypia-14.grand-challenge.org/Dataset/). It uses 2 scripts in order to run its detections. The first is `predict_on_one_image.py` which accepts a single image as an argument then saves the image (with all detections drawn) into a folder of your choosing. The second script, `predict_images.py` is virtually identical, the main difference is that you specify a folder containing all the images you wish to pass through the network instead of a single image. It also saves all predictions to a specified folder.
 
 ### Evaluating On Multiple Images
 Run this command replacing "_path to folder_" with the path to the folder where the images are located and "_path to saved model_" with the path to the model.pt file:
