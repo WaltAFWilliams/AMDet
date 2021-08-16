@@ -4,26 +4,36 @@ import torch, torchvision
 import os
 import matplotlib.pyplot as plt
 
+# Detections can to run on cpu and gpu
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+
 def get_model(path_to_model_dict: str):
+    """
+    Retrieves model dict from specified path and return a torch model for inference
+    """
+
     model_dict = torch.load(path_to_model_dict)
     model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=False)
     model.roi_heads.box_predictor.cls_score = torch.nn.Linear(in_features=1024, out_features=3, bias=True)
     model.roi_heads.box_predictor.bbox_pred = torch.nn.Linear(in_features=1024, out_features=12, bias=True)
-    model.to('cuda')
+    model.to(device)
     model.eval()
     model.load_state_dict(model_dict['model_state'])
+    
     return model
 
 
 def drawPredictions(originalImg: torch.Tensor, patches: torch.Tensor, origins: list, model, threshold: float = 0.3) -> torch.Tensor:
-    # Gather predictions for all patches
-    # Draw bounding box predictions on all patches
-    # Place patches on top of original image
-    torch.cuda.empty_cache()
+    """
+    Gathers predictions for all patches, draws bounding box predictions on patches, then places 
+    patches on top of original image
+    """
+
     drawn_patches = []
     drawnImg = originalImg.permute(1,2,0)
     classes = ['', 'mitotic', 'non-mitotic']
-    patches = patches.to('cuda')
+    patches = patches.to(device)
     preds = model(patches) # Gather predictions for all patches
 
     for i, pred in enumerate(preds): # Draw bounding boxes with image coordinates around all patches
@@ -45,6 +55,11 @@ def drawPredictions(originalImg: torch.Tensor, patches: torch.Tensor, origins: l
     return drawnImg.permute(2,0,1)
 
 def make_patches(img: torch.Tensor, win_size: tuple = (512, 512), overlap: float = 0.5) -> tuple:
+    """
+    splits original image into multiple patches and returns a tuple of tensors with origin points for each
+    patch along with the patch itself
+    """
+
     crops, origins = [], []
     slideDistance = 1.0 - overlap
     h, w = img.size()[1], img.size()[2]
