@@ -4,7 +4,7 @@ import torch, torchvision
 import os
 import matplotlib.pyplot as plt
 
-# Detections can to run on cpu and gpu
+# Detections can run on cpu and gpu
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
