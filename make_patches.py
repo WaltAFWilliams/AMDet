@@ -16,12 +16,15 @@ def transform_img(img: torch.Tensor, targetMean: torch.Tensor, targetSTD: torch.
     @param targetMean: Tensor of mean pixel activations for the RGB layers of target image
     @param targetSTD: Tensor of pixel standard deviations for RGB layers of target images
     """
+
+    # Collect means and standard deviations from RGB channels
     imgMean, imgStd = img.mean((1,2)), img.std((1,2))
     meanRed, meanGreen, meanBlue = imgMean.tolist()
     stdRed, stdGreen, stdBlue = imgStd.tolist()
     targetMeanRed, targetMeanGreen, targetMeanBlue = targetMean.tolist()
     targetStdRed, targetStdGreen, targetStdBlue = targetSTD.tolist()
     
+    # Reinhard transformation
     img[0,:,:] = ((img[0,:,:] - meanRed) / stdRed) * targetStdRed + targetMeanRed
     img[1,:,:] = ((img[1,:,:] - meanGreen) / stdGreen) * targetStdGreen + targetMeanGreen
     img[2,:,:] = ((img[2,:,:] - meanBlue) / stdBlue) * targetStdBlue + targetMeanBlue
@@ -31,7 +34,8 @@ def transform_img(img: torch.Tensor, targetMean: torch.Tensor, targetSTD: torch.
 def make_patches(img: torch.Tensor, label: torch.Tensor, win_size: Union[tuple,list], training: bool = True, 
                 save_dir: str = 'data/patches', overlap: float = 0.5, test: bool = False) -> None:
     """
-    Takes an (image, label) pair as input, divides the image into patches, and saves the patches with all corresponding bounding box predictions into the jsonl format required for the AutoML tool.
+    Takes an (image, label) pair as input, divides the image into patches, and saves the patches with all corresponding 
+    bounding box predictions into the jsonl format required for the AutoML tool.
     """
     json_line_sample = {
         'imageUrl': '',
@@ -62,7 +66,8 @@ def make_patches(img: torch.Tensor, label: torch.Tensor, win_size: Union[tuple,l
                             # Need to check if bottom (x,y) coordinates are outside of the patch
                             c_x2 = (box[2] - topX) if box[2] in range(topX, bottomX) else bottomX
                             c_y2 = (box[3] - topY) if box[3] in range(topY, bottomY) else bottomY
-                            # Check to make sure area of bounding box is > 40% original size (original bboxes had areas of 4900px and any box less than 40% of original box area is removed)
+                            # Check to make sure area of bounding box is > 40% original size 
+                            # (original bboxes had areas of 4900px and any box less than 40% of original box area is removed)
                             h, w = crop.size()[1], crop.size()[2]
                             c_x2 = min(w, c_x2)
                             c_y2 = min(h, c_y2)
