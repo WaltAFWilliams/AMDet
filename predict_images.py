@@ -12,7 +12,8 @@ from utils import make_patches, drawPredictions, get_model
 import argparse
 import time
 
-parser = argparse.ArgumentParser(description='Make predictions on all images in a folder. The output will be saved to a directory: \"mitosis_predictions\" unless otherwise specified.')
+parser = argparse.ArgumentParser(description='Make predictions on all images in a folder. The output will be saved to a directory: \
+                                 \"mitosis_predictions\" unless otherwise specified.')
 parser.add_argument('-f','--folder', help='Path to folder containing images for prediction', required=True)
 parser.add_argument('-m', '--model', help='Path to saved torch model (.pt) format', required=True)
 parser.add_argument('-s', '--patch_size', type=int, 
