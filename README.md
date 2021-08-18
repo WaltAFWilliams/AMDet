@@ -6,7 +6,7 @@ This work was inspired by a need to help a group of pathologists with labeling a
 
 ## How To Use
 ### Clone Repo
-First you will need to clone the repo
+First, clone the repo and switch to it with the following commands:
 ```Shell
 git clone https://github.com/WaltAFWilliams/AMDet.git
 cd AMDet
@@ -25,9 +25,9 @@ pip install -r requirements.txt
 ```
 
 ### Evaluating On Multiple Images
-Run this command replacing "_path to folder_" with the path to the folder where the images are located and "_path to saved model_" with the path to the model.pt file:
+Run this command replacing "_path to folder_" with the path to the folder where the images are located and "_path to model weights_" with the path to the model's weights':
 ```Shell 
-python predict_images.py -f <path to folder> -m <path to saved model>
+python3 predict_images.py -f <path to folder> -m <path to model weights>
 ```
 The arguments for the `predict_images.py` script are:
 ```Shell
@@ -41,7 +41,7 @@ The arguments for the `predict_images.py` script are:
 ### Evaluating On One Image
 The process for evaluating on a single image is identical except that the folder argument is replaced with a single image argument. For evaluating on a single image use this command:
 ```Shell
-python predict_on_one_image.py -i <path to image> -m <path to saved model>
+python3 predict_on_one_image.py -i <path to image> -m <path to saved model>
 ```
 The arguments for this script are:
 ```Shell
